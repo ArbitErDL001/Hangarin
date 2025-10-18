@@ -1,0 +1,41 @@
+{% load i18n %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Confirm Google Login</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" />
+<style>
+body {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+background-color: #f8f9fc;
+
+}
+.auth-card {
+max-width: 500px;
+background: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+padding: 2rem;
+text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="auth-card">
+<h3 class="mb-4">Confirm Sign In</h3>
+<p class="mb-3">You are about to sign in using your <strong>{{ provider.name }}</strong> account.</p>
+<form method="post">
+{% csrf_token %}
+<button type="submit" class="btn btn-primary btn-block mb-3">Continue with {{ provider.name }}</button>
+</form>
+<a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-block"> Cancel </a>
+</div>
+</body>
+</html>

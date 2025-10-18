@@ -6,7 +6,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">List of Categories</div>
+            <div class="card-title">List of Subtasks</div>
             <div class="card-category">Page Subtitle</div>
           </div>
           <br />
@@ -23,9 +23,35 @@
                 </div>
               </form>
             </div>
+            <div class="col-md-12 mb-3 ms-4">
+              <form method="get" class="row g-2 align-items-center">
+                {% if request.GET.q %}
+                  <input type="hidden" name="q" value="{{ request.GET.q }}">
+                {% endif %}
+                <div class="col-auto">
+                  <label for="smallSelect" class="col-form-label">Sort by</label>
+                </div>
+                <div class="col-auto">
+                  <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                    <option value="task" {% if request.GET.sort_by == "task" %}selected{% endif %}>
+                      Parent Task
+                    </option>
+                    <option value="title" {% if request.GET.sort_by == "title" %}selected{% endif %}>
+                      Title
+                    </option>
+                    <option value="status" {% if request.GET.sort_by == "status" %}selected{% endif %}>
+                      Status
+                    </option>
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                </div>
+              </form>
+            </div>
             <div class="col-md-6">
               <div class="pull-right">
-                <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add Category</a>
+                <a href="{% url 'subtask-add' %}" class="btn btn-success btn-rounded">Add Subtask</a>
               </div>
             </div>
           </div>
@@ -33,17 +59,21 @@
             <table class="table table-striped mt-3">
               <thead>
                 <tr>
-                  <th scope="col">Name</th>
+                  <th scope="col">TITLE</th>
+                  <th scope="col">STATUS</th>
+                  <th scope="col">PARENT TASK</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {% for object in object_list %}
                 <tr>
-                  <td>{{ object.name }}</td>
+                  <td>{{ object.title }}</td>
+                  <td>{{ object.status }}</td>
+                  <td>{{ object.task }}</td>
                   <td>
-                    <a href="category_list/{{ object.id }}">Edit</a>
-                    <a href="category_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+                    <a href="subtask_list/{{ object.id }}">Edit</a>
+                    <a href="subtask_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                   </td>
                 </tr>
                 {% empty %}

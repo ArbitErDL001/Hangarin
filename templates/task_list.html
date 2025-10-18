@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="content">
+  <div class="container-fluid">
+    <h4 class="page-title">Home</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">List of Tasks</div>
+            <div class="card-category">Page Subtitle</div>
+          </div>
+          <br />
+          <div class="col-md-12 row">
+            <div class="col-md-6">
+              <form class="navbar-left navbar-form nav-search mr-md-3" action="" method="get">
+                <div class="input-group">
+                  <input type="text" placeholder="Search ..." class="form-control" name="q" value="{{ request.GET.q }}" />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="la la-search search-icon"></i>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12 mb-3 ms-4">
+              <form method="get" class="row g-2 align-items-center">
+                {% if request.GET.q %}
+                  <input type="hidden" name="q" value="{{ request.GET.q }}">
+                {% endif %}
+
+                <div class="col-auto">
+                  <label for="smallSelect" class="col-form-label">Sort by</label>
+                </div>
+                <div class="col-auto">
+                  <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                    <option value="title" {% if request.GET.sort_by == "title" %}selected{% endif %}>
+                      Title
+                    </option>
+                    <option value="deadline" {% if request.GET.sort_by == "deadline" %}selected{% endif %}>
+                      Deadline
+                    </option>
+                    <option value="status" {% if request.GET.sort_by == "status" %}selected{% endif %}>
+                      Status
+                    </option>
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right">
+                <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded">Add Task</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">TITLE</th>
+                  <th scope="col">STATUS</th>
+                  <th scope="col">DEADLINE</th>
+                  <th scope="col">PRIORITY</th>
+                  <th scope="col">CATEGORY</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for object in object_list %}
+                <tr>
+                  <td>{{ object.title }}</td>
+                  <td>{{ object.status }}</td>
+                  <td>{{ object.deadline }}</td>
+                  <td>{{ object.priority }}</td>
+                  <td>{{ object.category }}</td>
+                  <td>
+                    <a href="task_list/{{ object.id }}">Edit</a>
+                    <a href="task_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4" style="text-align: center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

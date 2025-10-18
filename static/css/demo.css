@@ -1,9 +1,28 @@
+:root{
+	/* Dark theme variables (easy to tweak) */
+	--bg: #1e1e2f;
+	--text: #e0e0e0;
+	--accent: #4d7cfe;
+	--accent-hover: #5670ff;
+	--muted: #c3c5ca;
+	--panel: #2b2b3c;
+	--border: #2a2a3a;
+	--input-bg: #2a2a3c;
+}
+
+/* Ensure the main page background/text are dark-mode */
+body{
+	background-color: var(--bg);
+	color: var(--text);
+}
+
 .update-pro{
-	margin: 15px 25px;}
+	margin: 15px 25px;
+}
 
 .update-pro button {
-		padding: 13px 25px;
-	background: #4d7cfe;
+	padding: 13px 25px;
+	background: var(--accent);
 	color: #fff;
 	border-radius: 3px;
 	justify-content: center;
@@ -13,7 +32,7 @@
 }
 
 .update-pro button:hover {
-	background: #4d7cfe !important;
+	background: var(--accent-hover) !important;
 	color: #fff;
 	transform: translateY(-2px);
 	transition: all .2s linear;
@@ -31,7 +50,7 @@
 .update-pro button i{
 	margin-right: 5px !important;
 	font-size: 23px;
-	color: #C3C5CA;
+	color: var(--muted);
 	margin-right: 15px;
 	width: 25px;
 	text-align: center;
@@ -45,6 +64,7 @@
 
 .demo .form-check-label, .demo .form-radio-label{
 	margin-right: 15px;
+	color: var(--text); /* Assuming you want the label text to be the default text color */
 }
 
 .demo #slider{
@@ -52,7 +72,7 @@
 }
 
 .table-typo tbody > tr > td{
-	border-color: #fafafa;
+	border-color: var(--border);
 }
 
 .table-typo tbody > tr > td:first-child{
@@ -62,7 +82,7 @@
 
 .table-typo tbody > tr > td:first-child p{
 	font-size: 14px;
-	color: #333;
+	color: var(--text); /* Assuming you want the paragraph text to be the default text color */
 }
 
 .demo-icon {
@@ -72,10 +92,11 @@
 	margin-bottom: 20px;
 	padding: 10px;
 	transition: all .2s;
+	background-color: var(--panel);
 }
 
 .demo-icon:hover{
-	background-color: #f4f5f8;
+	background-color: var(--input-bg);
 	border-radius: 3px;
 }
 
@@ -83,19 +104,34 @@
 	font-size: 1.8rem;
 	margin-right: 10px;
 	line-height: 1;
-	color: #333439;
+	color: var(--text);
 }
 
 .demo-icon .icon-class{
 	font-weight: 300;
 	font-size: 13px;
-	color: #777;
+	color: var(--muted);
 }
 
 .from-show-notify .form-control{
 	margin-bottom: 15px;
+	background-color: var(--input-bg);
+	color: var(--text);
 }
 
 .from-show-notify label{
 	padding-top: 0.65rem;
+	color: var(--text);
+}
+
+@media screen and (max-width: 550px){
+	.table-typo tr td{
+		display: flex;
+		align-items: center;
+		word-break: break-word;
+	}
+
+	.table-typo tr td:first-child p{
+		margin-bottom: 0px;
+	}
 }

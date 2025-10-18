@@ -12,9 +12,9 @@
           <br />
           <div class="col-md-12 row">
             <div class="col-md-6">
-              <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+              <form class="navbar-left navbar-form nav-search mr-md-3" action="" method="get">
                 <div class="input-group">
-                  <input type="text" placeholder="Search ..." class="form-control" />
+                  <input type="text" placeholder="Search ..." class="form-control" name="q" value="{{ request.GET.q }}" />
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="la la-search search-icon"></i>
@@ -35,7 +35,7 @@
                 <tr>
                   <th scope="col">TASK</th>
                   <th scope="col">CONTENT</th>
-                  <th scope="col">CREATED AT</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -44,9 +44,9 @@
                 <tr>
                   <td>{{ object.task }}</td>
                   <td>{{ object.content }}</td>
-                  <td>{{ object.created at }}</td>
+
                   <td>
-                    <a href="note_list/{{ object.id }}/update">Edit</a>
+                    <a href="note_list/{{ object.id }}">Edit</a>
                     <a href="note_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                   </td>
                 </tr>
