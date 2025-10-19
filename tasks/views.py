@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
@@ -6,6 +6,7 @@ from tasks.models import Category, Note, Priority, Task, SubTask
 from tasks.forms import CategoryForm, NoteForm, PriorityForm, SubTaskForm, TaskForm
 from django.db.models import Q
 from django.utils import timezone
+from datetime import timedelta
 
 class HomePageView(ListView):
     model = Category
@@ -23,10 +24,13 @@ class HomePageView(ListView):
         context["total_priority"] = Priority.objects.count()
 
         # Extra context for dashboard
-        today = timezone.now().date()
+        now = timezone.now()
 
-        # Show tasks with deadlines in the next 7 days
-        context["near_deadline_tasks"] = Task.objects.filter(deadline__gte=today, deadline__lte=today + timezone.timedelta(days=7)).order_by("deadline")
+        # Show tasks with deadlines in the next 7 days (timezone-aware)
+        context["near_deadline_tasks"] = Task.objects.filter(
+            deadline__gte=now,
+            deadline__lte=now + timedelta(days=7)
+        ).order_by("deadline")
 
         # Show most recent tasks (e.g. last 5 created)
         context["recent_tasks"] = Task.objects.order_by("-created_at")[:5]
@@ -238,3 +242,12 @@ class TaskDeleteView(DeleteView):
     form_class = TaskForm
     template_name = 'task_del.html'
     success_url = reverse_lazy('task-list')
+
+def create_task(request):
+    task = Task.objects.create(
+        title="New Task",
+        deadline=timezone.now() + timedelta(days=7),
+        # other fields...
+    )
+    # adjust redirect target as needed
+    return redirect('/')
