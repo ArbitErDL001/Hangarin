@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{% static 'css/ready.css' %}">
     <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashb.css' %}">
 </head>
 {% progressive_web_app_meta %}
 <body>
@@ -17,7 +19,7 @@
         <div class="main-header">
             <div class="logo-header">
                 <a href="index.html" class="logo">
-                    Ready Dashboard
+                    Hangarin Dashboard
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -72,18 +74,18 @@
                                             <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
                                             <div class="notif-content">
                                                 <span class="block">
-                                                    Rahmad commented on Admin
+                                                   Rover commented on Admin
                                                 </span>
                                                 <span class="time">12 minutes ago</span> 
                                             </div>
                                         </a>
                                         <a href="#">
                                             <div class="notif-img"> 
-                                                <img src="assets/img/profile2.jpg" alt="Img Profile">
+                                                <img src="{% static 'img/profile2.png' %}" alt="Profile">
                                             </div>
                                             <div class="notif-content">
                                                 <span class="block">
-                                                    Reza send messages to you
+                                                    Shorekeeper send messages to you
                                                 </span>
                                                 <span class="time">12 minutes ago</span> 
                                             </div>
@@ -92,7 +94,7 @@
                                             <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
                                             <div class="notif-content">
                                                 <span class="block">
-                                                    Farrah liked Admin
+                                                    Cartethyia liked Admin
                                                 </span>
                                                 <span class="time">17 minutes ago</span> 
                                             </div>
