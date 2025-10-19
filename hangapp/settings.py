@@ -25,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w9(m&s#fci7t7u0=(4@1$&w50r9+#hl!urbswb^p*eq)$n0-*)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['Arbiterdl.pythonanywhere.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'Arbiterdl.pythonanywhere.com']
 
 
 # Application definition
