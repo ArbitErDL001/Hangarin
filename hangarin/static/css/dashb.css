@@ -1,0 +1,27 @@
+.main-header {
+    background-image: url("../img/header-bg1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.sidebar {
+  background-image: url("../img/sidebar-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+.sidebar ::before {
+    background-color: rgba(38, 0, 255, 0.8);
+}
+
+.main-header .logo-header a.logo {
+    color: #000000;
+}
+
+.profile-pic span {
+  color: #000000;
+}
+
