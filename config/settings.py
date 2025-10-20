@@ -85,15 +85,15 @@ ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': 'ID_GOES_HERE',
-            'secret': 'SECRET_GOES_HERE',
+            'client_id': 'CLIENT_ID_HERE',
+            'secret': 'CLIENT_SECRET_HERE',
             'key': ''
         }
     },
     'github': {
         'APP': {
-        'client_id': 'ID_GOES_HERE',
-            'secret': 'SECRET_GOES_HERE',
+            'client_id': 'CLIENT_ID_HERE',
+            'secret': 'CLIENT_SECRET_HERE',
             'key': ''
         }
     }
