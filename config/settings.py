@@ -85,8 +85,15 @@ ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': os.environ.get('GOOGLE_CLIENT_ID'),
-            'secret': os.environ.get('GOOGLE_CLIENT_SECRET'),
+            'client_id': 'ID_GOES_HERE',
+            'secret': 'SECRET_GOES_HERE',
+            'key': ''
+        }
+    },
+    'github': {
+        'APP': {
+        'client_id': 'ID_GOES_HERE',
+            'secret': 'SECRET_GOES_HERE',
             'key': ''
         }
     }

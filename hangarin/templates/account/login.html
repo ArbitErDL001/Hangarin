@@ -5,9 +5,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Hangarin Login</title>
+  <title>Hangarin — Login</title>
 
-  <!-- Bootstrap + MDB + Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" />
@@ -52,31 +51,37 @@
           {% csrf_token %}
           <div class="text-center mb-3">
             <p>Sign in with:</p>
-            <a href="{% provider_login_url 'google' %}" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="{% provider_login_url 'github' %}" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-github"></i>
-            </a>
+            {% provider_login_url 'google' as google_login_url %}
+            {% provider_login_url 'github' as github_login_url %}
+            {% if google_login_url %}
+              <a href="{{ google_login_url }}" class="btn btn-link btn-floating mx-1" aria-label="Sign in with Google">
+                <i class="fab fa-google"></i>
+              </a>
+            {% endif %}
+            {% if github_login_url %}
+              <a href="{{ github_login_url }}" class="btn btn-link btn-floating mx-1" aria-label="Sign in with GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            {% endif %}
           </div>
 
           <p class="text-center">or:</p>
 
-          <div class="form-outline mb-4">
-            <input type="text" name="login" class="form-control" required />
-            <label class="form-label">Email or Username</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" name="login" id="id_login" class="form-control" required />
+            <label class="form-label" for="id_login">Email or Username</label>
           </div>
 
-          <div class="form-outline mb-4">
-            <input type="password" name="password" class="form-control" required />
-            <label class="form-label">Password</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" name="password" id="id_password" class="form-control" required />
+            <label class="form-label" for="id_password">Password</label>
           </div>
 
           <div class="row mb-4">
             <div class="col-md-6 d-flex justify-content-center">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" checked />
-                <label class="form-check-label">Remember me</label>
+              <div class="form-check mb-3 mb-md-0">
+                <input class="form-check-input" type="checkbox" id="loginCheck" checked />
+                <label class="form-check-label" for="loginCheck"> Remember me </label>
               </div>
             </div>
             <div class="col-md-6 d-flex justify-content-center">
@@ -85,9 +90,9 @@
           </div>
 
           {% if form.non_field_errors %}
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" role="alert">
               {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
+                <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
               {% endfor %}
             </div>
           {% endif %}
@@ -102,34 +107,40 @@
           {% csrf_token %}
           <div class="text-center mb-3">
             <p>Sign up with:</p>
-            <a href="{% provider_login_url 'google' %}" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="{% provider_login_url 'github' %}" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-github"></i>
-            </a>
+            {% provider_login_url 'google' as google_signup_url %}
+            {% provider_login_url 'github' as github_signup_url %}
+            {% if google_signup_url %}
+              <a href="{{ google_signup_url }}" class="btn btn-link btn-floating mx-1" aria-label="Sign up with Google">
+                <i class="fab fa-google"></i>
+              </a>
+            {% endif %}
+            {% if github_signup_url %}
+              <a href="{{ github_signup_url }}" class="btn btn-link btn-floating mx-1" aria-label="Sign up with GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            {% endif %}
           </div>
 
           <p class="text-center">or:</p>
 
-          <div class="form-outline mb-4">
-            <input type="text" name="username" class="form-control" required />
-            <label class="form-label">Username</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" name="username" id="registerUsername" class="form-control" required />
+            <label class="form-label" for="registerUsername">Username</label>
           </div>
 
-          <div class="form-outline mb-4">
-            <input type="email" name="email" class="form-control" required />
-            <label class="form-label">Email</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" name="email" id="registerEmail" class="form-control" required />
+            <label class="form-label" for="registerEmail">Email</label>
           </div>
 
-          <div class="form-outline mb-4">
-            <input type="password" name="password1" class="form-control" required />
-            <label class="form-label">Password</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" name="password1" id="registerPassword" class="form-control" required />
+            <label class="form-label" for="registerPassword">Password</label>
           </div>
 
-          <div class="form-outline mb-4">
-            <input type="password" name="password2" class="form-control" required />
-            <label class="form-label">Repeat password</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" name="password2" id="registerRepeatPassword" class="form-control" required />
+            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
           </div>
 
           <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
